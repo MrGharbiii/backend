@@ -1,4 +1,0 @@
-package com.slimhealthy.slimhealthy_backend.infrastructure.database.mongodb;
-
-public class MongoConfig {
-}

@@ -16,11 +16,11 @@ public class MongoDBUserRepository implements UserRepository {
 
     @Override
     public Optional<User> findByEmail(String email) {
-        return Optional.of(
-                mongoTemplate.findOne(
-                        Query.query(Criteria.where("email").is(email)),
-                        User.class
-                ));
+        User user = mongoTemplate.findOne(
+                Query.query(Criteria.where("email").is(email)),
+                User.class
+        );
+        return Optional.ofNullable(user); // Proper null handling
     }
 
     @Override

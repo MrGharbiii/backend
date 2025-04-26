@@ -6,7 +6,10 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Import;
 
-@SpringBootApplication
+@SpringBootApplication(scanBasePackages = {
+		"com.slimhealthy.slimhealthy_backend",
+		"org.modelmapper"
+})
 @Import({ModelMapperConfig.class, SecurityConfig.class})
 public class SlimHealthyApplication {
 

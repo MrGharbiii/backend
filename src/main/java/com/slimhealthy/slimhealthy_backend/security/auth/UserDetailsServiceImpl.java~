@@ -1,4 +1,0 @@
-package com.slimhealthy.slimhealthy_backend.security.auth;
-
-public class UserDetailsServiceImpl {
-}
