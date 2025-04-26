@@ -1,0 +1,4 @@
+package com.slimhealthy.slimhealthy_backend.application.controllers;
+
+public class MesuresController {
+}
