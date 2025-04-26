@@ -1,5 +1,5 @@
 # For .properties format
-server.port=5050
+server.port=8080
 server.error.include-message=always
 
 spring.data.mongodb.uri=mongodb://localhost:27017/slimhealthy
