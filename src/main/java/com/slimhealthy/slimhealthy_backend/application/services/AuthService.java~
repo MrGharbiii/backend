@@ -41,6 +41,8 @@ public class AuthService {
 
         // Add debug logging
         User savedUser = userRepository.save(user);
+        if (savedUser == null) {
+            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Failed to save user");
 
 
         return jwtUtil.generateToken(userDetailsService.loadUserByUsername(user.getEmail()));

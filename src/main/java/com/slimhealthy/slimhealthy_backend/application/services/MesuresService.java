@@ -10,6 +10,8 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+
 @Service
 @RequiredArgsConstructor
 public class MesuresService {
@@ -30,9 +32,14 @@ public class MesuresService {
 
     private User getAuthenticatedUser() {
         String email = SecurityContextHolder.getContext().getAuthentication().getName();
-        return userRepository.findByEmail(email)
-                .orElseThrow(() -> new UsernameNotFoundException(
-                        "User not found. Please register or login again."
-                ));
+        System.out.println("Authenticated email from token: " + email); // Debug
+
+        Optional<User> userOpt = userRepository.findByEmail(email);
+        System.out.println("User found in DB: " + userOpt.isPresent()); // Debug
+
+        return userOpt.orElseThrow(() -> {
+            System.out.println("FAILURE: User not found for email: " + email); // Debug
+            return new UsernameNotFoundException("User not found. Please register or login again.");
+        });
     }
 }

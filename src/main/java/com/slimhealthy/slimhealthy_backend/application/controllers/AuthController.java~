@@ -23,8 +23,8 @@ public class AuthController {
     public Map<String, Object> inspectToken(@RequestHeader("Authorization") String authHeader) {
         String token = authHeader.substring(7);
         return Map.of(
-                "username", jwtUtil.extractUsername(token)
-
+                "username", jwtUtil.extractUsername(token),
+                "expiration", jwtUtil.extractExpiration(token)
         );
     }
     @PostMapping("/signup")

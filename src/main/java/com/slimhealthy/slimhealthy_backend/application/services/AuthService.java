@@ -39,11 +39,15 @@ public class AuthService {
                 .mesures(new Mesures()) // Initialize empty measurements
                 .build();
 
-        // Add debug logging
-        User savedUser = userRepository.save(user);
-        if (savedUser == null) {
-            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Failed to save user");
+        // Debug: Print before save
+        System.out.println("Attempting to save user: " + user);
 
+        User savedUser = userRepository.save(user);
+
+        // Debug: Verify saved user
+        System.out.println("Saved user with ID: " + savedUser.getId());
+        System.out.println("User in DB: " +
+                userRepository.findByEmail(savedUser.getEmail()).isPresent());
 
         return jwtUtil.generateToken(userDetailsService.loadUserByUsername(user.getEmail()));
     }
