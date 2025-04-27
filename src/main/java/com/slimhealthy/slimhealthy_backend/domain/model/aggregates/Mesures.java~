@@ -4,9 +4,10 @@ import lombok.Data;
 
 @Data
 public class Mesures {
-    private BasicInfo basicInfo = new BasicInfo(); // Initialize BasicInfo
+    private BasicInfo basicInfo;
 
     public double calculateBMI() {
-        return basicInfo.getCurrentWeight() / Math.pow(basicInfo.getHeight()/100, 2);
+        return basicInfo.getCurrentWeight() /
+                Math.pow(basicInfo.getHeight()/100, 2);
     }
 }

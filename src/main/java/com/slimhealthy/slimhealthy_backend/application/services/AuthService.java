@@ -11,6 +11,8 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -21,6 +23,7 @@ public class AuthService {
     private final PasswordEncoder passwordEncoder;
     private final AuthenticationManager authenticationManager;
     private final JWTUtil jwtUtil;
+    private final UserDetailsService userDetailsService;
 
     public String register(UserRegistrationDto dto) {
         if(userRepository.findByEmail(dto.getEmail()).isPresent()) {
@@ -33,7 +36,8 @@ public class AuthService {
                 .build();
 
         userRepository.save(user);
-        return jwtUtil.generateToken(user);
+        UserDetails userDetails = userDetailsService.loadUserByUsername(user.getEmail());
+        return jwtUtil.generateToken(userDetails); // Pass UserDetails
     }
 
     public String login(LoginDto dto) {
@@ -43,6 +47,6 @@ public class AuthService {
                         dto.getPassword())
         );
         SecurityContextHolder.getContext().setAuthentication(authentication);
-        return jwtUtil.generateToken((User) authentication.getPrincipal());
+        return jwtUtil.generateToken((UserDetails) authentication.getPrincipal());
     }
 }
