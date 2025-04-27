@@ -49,7 +49,7 @@ public class ModelMapperConfig {
                     m.<List<String>>map(MesuresDto::getAllergies, (dest, v) -> dest.getMedicalHistory().setAllergies(v));
                     m.<List<String>>map(MesuresDto::getChronicConditions, (dest, v) -> dest.getMedicalHistory().setChronicConditions(v));
                     m.<List<String>>map(MesuresDto::getMedications, (dest, v) -> dest.getMedicalHistory().setMedications(v));
-
+                  
                 });
 
         // Surgery DTO mapping
