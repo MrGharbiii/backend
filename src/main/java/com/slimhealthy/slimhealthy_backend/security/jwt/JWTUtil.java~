@@ -19,7 +19,7 @@ public class JWTUtil {
     @Value("${jwt.secret}")
     private String secret;
 
-    @Value("${jwt.expiration-ms}")
+    @Value("${jwt.expiration}")
     private Long expiration;
 
     private SecretKey getSigningKey() {
