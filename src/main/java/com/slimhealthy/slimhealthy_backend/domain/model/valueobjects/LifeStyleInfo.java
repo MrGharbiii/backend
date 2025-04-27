@@ -1,0 +1,20 @@
+package com.slimhealthy.slimhealthy_backend.domain.model.valueobjects;
+
+import com.slimhealthy.slimhealthy_backend.domain.model.enums.ActivityLevel;
+import com.slimhealthy.slimhealthy_backend.domain.model.enums.AlcoholConsumption;
+import jakarta.validation.constraints.Positive;
+import lombok.Data;
+
+import java.util.List;
+
+@Data
+public class LifeStyleInfo {
+    @Positive
+    private double avgSleepHours;
+
+    private ActivityLevel activityLevel;
+    private boolean isSmoker;
+    private AlcoholConsumption alcoholConsumption;
+    private List<String> foodPreferences;
+
+}
