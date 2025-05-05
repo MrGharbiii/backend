@@ -11,6 +11,7 @@ import org.modelmapper.convention.MatchingStrategies;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -42,6 +43,15 @@ public class ModelMapperConfig {
                     m.<Boolean>map(MesuresDto::isSmoker, (dest, v) -> dest.getLifeStyleInfo().setSmoker(v));
                     m.<AlcoholConsumption>map(MesuresDto::getAlcoholConsumption, (dest, v) -> dest.getLifeStyleInfo().setAlcoholConsumption(v));
                     m.<List<String>>map(MesuresDto::getFoodPreferences, (dest, v) -> dest.getLifeStyleInfo().setFoodPreferences(v));
+                    m.<NatureOfWork>map(MesuresDto::getNatureOfWork, (dest, v) -> dest.getLifeStyleInfo().setNatureOfWork(v));
+                    m.<LocalTime>map(MesuresDto::getUsualWakeUpTime, (dest, v) -> dest.getLifeStyleInfo().setUsualWakeUpTime(v));
+                    m.<LocalTime>map(MesuresDto::getUsualSleepTime, (dest, v) -> dest.getLifeStyleInfo().setUsualSleepTime(v));
+                    m.<NapDuration>map(MesuresDto::getNapDuration, (dest, v) -> dest.getLifeStyleInfo().setNapDuration(v));
+                    m.<Double>map(MesuresDto::getWaterIntakeLiters, (dest, v) -> dest.getLifeStyleInfo().setWaterIntakeLiters(v));
+                    m.<StressLevel>map(MesuresDto::getStressLevel, (dest, v) -> dest.getLifeStyleInfo().setStressLevel(v));
+                    m.<WorkoutRoutine>map(MesuresDto::getWorkoutRoutine, (dest, v) -> dest.getLifeStyleInfo().setWorkoutRoutine(v));
+                    m.<Double>map(MesuresDto::getWorkoutAverageHours, (dest, v) -> dest.getLifeStyleInfo().setWorkoutAverageHours(v));
+                    m.<Double>map(MesuresDto::getDailyTimeAvailabilityHours, (dest, v) -> dest.getLifeStyleInfo().setDailyTimeAvailabilityHours(v));
 
                     // GoalsPreferences
                     m.<HealthGoal>map(MesuresDto::getPrimaryHealthGoal, (dest, v) -> dest.getGoalsPreferences().setPrimaryHealthGoal(v));
