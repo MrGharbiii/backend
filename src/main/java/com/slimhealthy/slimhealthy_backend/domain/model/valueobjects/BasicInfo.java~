@@ -2,13 +2,9 @@ package com.slimhealthy.slimhealthy_backend.domain.model.valueobjects;
 
 import com.slimhealthy.slimhealthy_backend.domain.model.enums.Gender;
 import jakarta.validation.constraints.*;
-import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 
 @Data
-@NoArgsConstructor
-@AllArgsConstructor
 public class BasicInfo {
     @Min(12) @Max(120)
     private int age;
