@@ -31,22 +31,7 @@ public class AuthController {
     }
 
     @PostMapping("/login")
-    public ResponseEntity<Map<String, String>> login(
-            @Valid @RequestBody LoginDto dto
-    ) {
-        String token = authService.login(dto);
-        return ResponseEntity.ok(Map.of(
-                "token", token,
-                "message", "Login successful"
-        ));
-    }
-
-    @GetMapping("/validate")
-    public ResponseEntity<Map<String, Boolean>> validateToken(
-            @RequestHeader("Authorization") String authHeader
-    ) {
-        String token = authHeader.substring(7); // Remove "Bearer "
-        boolean isValid = jwtUtil.validateToken(token);
-        return ResponseEntity.ok(Map.of("valid", isValid));
+    public ResponseEntity<String> login(@Valid @RequestBody LoginDto dto) {
+        return ResponseEntity.ok(authService.login(dto));
     }
 }

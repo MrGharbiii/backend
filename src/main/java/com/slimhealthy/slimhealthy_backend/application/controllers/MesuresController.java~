@@ -19,10 +19,7 @@ public class MesuresController {
     public ResponseEntity<?> createMesures(@Valid @RequestBody MesuresDto dto) {
         return ResponseEntity.ok(mesuresService.saveMesures(dto));
     }
-    @GetMapping
-    public ResponseEntity<Mesures> getMesures() {
-        return ResponseEntity.ok(mesuresService.getMesures());
-    }
+    
 
     @PatchMapping
     public ResponseEntity<?> updateMesures(@Valid @RequestBody MesuresDto dto) {
